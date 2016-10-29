@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2013-2016 QuartzDesk.com.
+  ~ Licensed under the MIT license (https://opensource.org/licenses/MIT).
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.quartzdesk-parent-pom</groupId>
+  <artifactId>quartzdesk-parent-pom</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+
+  <name>QuartzDesk Parent POM</name>
+
+  <description>QuartzDesk Parent POM.</description>
+
+  <url>https://github.com/quartzdesk/quartzdesk-parent-pom</url>
+
+  <developers>
+    <developer>
+      <name>QuartzDesk</name>
+      <organization>QuartzDesk.com</organization>
+      <organizationUrl>https://www.quartzdesk.com</organizationUrl>
+    </developer>
+  </developers>
+
+  <organization>
+    <name>QuartzDesk.com</name>
+    <url>https://www.quartzdesk.com</url>
+  </organization>
+
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://github.com/quartzdesk/quartzdesk-parent-pom/LICENSE</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <developerConnection>scm:svn://scm.quartzdesk.com/quartzdesk/quartzdesk-parent-pom/trunk</developerConnection>
+    <connection>scm:svn://scm.quartzdesk.com/quartzdesk/quartzdesk-parent-pom/trunk</connection>
+    <url>http://scm.quartzdesk.com/quartzdesk/quartzdesk-parent-pom</url>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>quartzdesk.releases</id>
+      <url>${repo.url}/releases
+      </url>
+    </repository>
+    <snapshotRepository>
+      <id>quartzdesk.snapshots</id>
+      <url>${repo.url}/snapshots
+      </url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <profiles>
+    <profile>
+      <!--
+        Build profile activated when the BUILD_NUMBER environment variable is not set.
+      -->
+      <id>without_build_number</id>
+      <activation>
+        <property>
+          <name>!env.BUILD_NUMBER</name>
+        </property>
+      </activation>
+      <properties>
+        <build.number>N/A</build.number>
+      </properties>
+    </profile>
+
+    <profile>
+      <!--
+        Build profile activated when the BUILD_NUMBER environment variable is set.
+        This variable is set by Jenkins.
+      -->
+      <id>with_build_number</id>
+      <activation>
+        <property>
+          <name>env.BUILD_NUMBER</name>
+        </property>
+      </activation>
+      <properties>
+        <build.number>${env.BUILD_NUMBER}</build.number>
+      </properties>
+    </profile>
+  </profiles>
+
+  <properties>
+    <!--
+      Implementation-Vendor-Id used in manifests.
+    -->
+    <vendor.id>com.quartzdesk</vendor.id>
+
+    <!--
+      To prevent "[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources,
+      i.e. build is platform dependent!" messages in the build log and also to make the changes
+      plugin send release announcements in UTF-8.
+    -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <repo.url>http://ci.quartzdesk.com:7070/nexus/content/repositories</repo.url>
+    <jenkins.url>http://ci.quartzdesk.com:7070/jenkins/</jenkins.url>
+  </properties>
+
+</project>

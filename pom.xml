@@ -12,7 +12,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.quartzdesk-parent-pom</groupId>
   <artifactId>quartzdesk-parent-pom</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <packaging>pom</packaging>
 
   <name>QuartzDesk Parent POM</name>
@@ -105,9 +105,6 @@
       plugin send release announcements in UTF-8.
     -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-    <repo.url>http://ci.quartzdesk.com:7070/nexus/content/repositories</repo.url>
-    <jenkins.url>http://ci.quartzdesk.com:7070/jenkins/</jenkins.url>
   </properties>
 
 </project>
